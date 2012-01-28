@@ -7,7 +7,11 @@ require "activerecord-mysql2-adapter-mysqldump/version"
 module ActiveRecord
   module ConnectionAdapters
     module Mysqldump
-      ActiveRecord::ConnectionAdapters::Mysql2Adapter.send(:include, StructureDump)
+      class ActiveRecord::ConnectionAdapters::Mysql2Adapter
+        include StructureDump
+        alias :default_structure_dump :structure_dump
+        alias :structure_dump :mysqldump_structure_dump
+      end
     end
   end
 end

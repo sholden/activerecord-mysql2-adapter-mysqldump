@@ -17,7 +17,7 @@ describe ActiveRecord::ConnectionAdapters::Mysqldump::StructureDump do
     command = "mysqldump -uusername database --no-data --skip-comments"
     Kernel.should_receive(:system).with(command).and_return('success')
 
-    @adapter.structure_dump.should == 'success'
+    @adapter.mysqldump_structure_dump.should == 'success'
   end
 
   it "should include StructureDump into ActiveRecord::ConnectionAdapters::Mysql2Adapter" do

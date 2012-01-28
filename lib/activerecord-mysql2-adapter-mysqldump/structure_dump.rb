@@ -2,7 +2,7 @@ module ActiveRecord
   module ConnectionAdapters
     module Mysqldump
       module StructureDump
-        def structure_dump
+        def mysqldump_structure_dump
           abcs = ActiveRecord::Base.configurations
           ENV['MYSQL_HOST'] = abcs[Rails.env]['host'] if abcs[Rails.env]['host']
           ENV['MYSQL_TCP_PORT'] = abcs[Rails.env]['port'].to_s if abcs[Rails.env]['port']
