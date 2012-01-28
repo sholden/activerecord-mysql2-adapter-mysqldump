@@ -15,7 +15,7 @@ describe ActiveRecord::ConnectionAdapters::Mysqldump::StructureDump do
     }
 
     command = "mysqldump -uusername database --no-data --skip-comments"
-    IO.should_receive(:popen).with(command).and_return('success')
+    @adapter.should_receive(:`).with(command).and_return('success')
 
     @adapter.mysqldump_structure_dump.should == 'success'
   end

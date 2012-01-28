@@ -8,7 +8,7 @@ module ActiveRecord
           ENV['MYSQL_TCP_PORT'] = abcs[Rails.env]['port'].to_s if abcs[Rails.env]['port']
           ENV['MYSQL_PWD']  = abcs[Rails.env]['password'] if abcs[Rails.env]['password']
           command = "mysqldump -u#{abcs[Rails.env]['username']} #{abcs[Rails.env]['database']} --no-data --skip-comments"
-          dump = IO.popen(command)
+          dump = `#{command}`
           raise 'Error dumping database' if $?.exitstatus == 1
           dump
         end
